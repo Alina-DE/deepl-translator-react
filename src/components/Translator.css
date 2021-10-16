@@ -1,20 +1,14 @@
-main {
+main, main form  {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-main form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-main form > div:nth-of-type(1) {
+main form section {
     position: relative;
 }
 
-.clear {
+main form section .clear {
     width: fit-content;
     position: absolute;
     top: 0;
@@ -24,13 +18,13 @@ main form > div:nth-of-type(1) {
     border-radius: 50%;
 }
 
-.clear:hover {
+main form section .clear:hover {
     cursor: pointer;
     transition: 0.6s;
     background: rgba(116, 55, 132, 0.3);
 }
 
-main form > div:nth-of-type(2) {
+main form > div {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -49,10 +43,9 @@ main textarea {
     border: 1px solid gray;
     border-radius: 3px;
 }
-
 main textarea:focus {
     outline: none !important;
-    border: 1px solid #743784;
+    border-color: #743784;
     box-shadow: 0 0 5px gray;
 }
 
@@ -78,36 +71,28 @@ main button {
     background: #743784;
     box-shadow: 0 0 5px gray;
 }
-
 main button:hover {
     cursor: pointer;
     color: #743784;
     background: white;
     transition: 0.6s;
 }
-
-main button[disabled] {
+main button[disabled], main button[disabled]:hover {
     color: rgba(255, 255, 255, 0.5);
     background: rgba(116, 55, 132, 0.5);
     border: none;
 }
-
 main button[disabled]:hover {
     cursor: initial;
-    background: rgba(116, 55, 132, 0.5);
 }
-
 
 /* Responsiveness for tablet and mobile */
 @media screen and (max-width: 768px) {
 
-    main {
+    main, main form {
         flex-direction: column;
     }
-    main form {
-        flex-direction: column;
-    }
-    main form > div:nth-of-type(2) {
+    main form > div {
         margin-top: 0;
         height: 100px;
         justify-content: space-between;

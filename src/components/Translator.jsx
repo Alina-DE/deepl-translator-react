@@ -1,19 +1,18 @@
-import axios from 'axios'
 import React, { useState } from 'react'
+import axios from 'axios'
 
 // styling
 import "./Translator.css"
 
 
 function Translator() {
-
     const [languageCode, setLanguageCode] = useState("")
     const [languageName, setLanguageName] = useState("")
     const [contentInput, setContentInput] = useState("")
     const [contentOutput, setContentOutput] = useState("")
 
+    // get translation from DeepL
     const getTranslation = (e) => {
-
         e.preventDefault()
 
         const deeplUrl = `https://api-free.deepl.com/v2/translate?auth_key=${process.env.REACT_APP_DEEPL_KEY}&text=${contentInput}&source_lang=EN&target_lang=${languageCode}`
@@ -23,18 +22,16 @@ function Translator() {
             .catch(error => console.log("error :", error.response))
     }
 
-
     return (
         <main>
             {/* Form: origin text + languages dropdown menu + button */}
             <form onSubmit={getTranslation}>
 
                 {/* Origin text */}
-                <div>
+                <section>
                     <label htmlFor="input-text">English</label>
 
                     <textarea
-                        name="input-text"
                         id="input-text"
                         cols="35"
                         rows="10"
@@ -44,15 +41,23 @@ function Translator() {
                         onChange={(e) => setContentInput(e.target.value)}></textarea>
 
                     {/* Clear both textareas */}
-                    {contentInput ? <div className="clear" onClick={() => { setContentInput(""); setContentOutput("") }}>✖️</div>
+                    {contentInput ?
+                        <div
+                            className="clear"
+                            onClick={() => {
+                                setContentInput("");
+                                setContentOutput("")
+                            }}>
+                            ✖️
+                        </div>
                         :
                         null
                     }
-                </div>
+                </section>
 
                 {/* Dropdown menu for a target language */}
                 <div>
-                    <select name="language" id="language"
+                    <select
                         onChange={(e) => {
                             setLanguageCode(e.target.value);
                             setLanguageName(e.target.selectedOptions[0].text);
@@ -60,7 +65,6 @@ function Translator() {
                         }}>
 
                         <option value="">Choose a target language</option>
-
                         <option value="BG">Bulgarian</option>
                         <option value="ZH">Chinese</option>
                         <option value="CS">Czech</option>
@@ -96,7 +100,15 @@ function Translator() {
             <div>
                 <label htmlFor="output-text">{languageName !== "Choose a target language" ? languageName : null}</label>
 
-                <textarea name="output-text" id="output-text" cols="35" rows="10" placeholder="Result" value={contentOutput} readOnly>{contentOutput}
+                <textarea
+                    id="output-text"
+                    cols="35"
+                    rows="10"
+                    placeholder="Result"
+                    value={contentOutput}
+                    readOnly
+                >
+                    {contentOutput}
                 </textarea>
             </div>
         </main>
