@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Mali&display=swap');
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  padding: 30px 10px;
+  background-image: url("./images/bg.jpg");
+  background-position: center;
+}
+
+h1, h2, h3 {
+  font-family: 'Mali', cursive;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    padding: 10px;
+    background-position: center top;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  body {
+    background-position: center;
+  }
+}
